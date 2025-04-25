@@ -4,6 +4,14 @@
         <title>GBA Games</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Google Analytics with your Measurement ID -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZFH93MVCS"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-ZZFH93MVCS');
+        </script>
         <style>
             #content {
                 display: none;
@@ -86,7 +94,7 @@
                 <li><a href="./launcher.html#mariokart">Mario Kart: Super Circuit</a></li>
                 <li><a href="./launcher.html#marioparty">Mario Party Advance</a></li>
                 <li><a href="./launcher.html#mariopinball">Mario Pinball Land</a></li>  
-                <li><a href="./launcher.html#mvsdk">Mario V.S. Donkey Kong</a]+)/li>
+                <li><a href="./launcher.html#mvsdk">Mario V.S. Donkey Kong</a></li>
                 <li><a href="./launcher.html#megamanbass">Megaman & Bass</a></li>
                 <li><a href="./launcher.html#megaman_battle1">Megaman Battle Network 1</a></li>
                 <li><a href="./launcher.html#megaman_battle2">Megaman Battle Network 2</a></li>
@@ -178,6 +186,11 @@
                 if (enteredPassword === 'IWANTGAMES') {
                     document.getElementById('password-form').style.display = 'none';
                     document.getElementById('content').style.display = 'block';
+                    // Track successful login in Google Analytics
+                    gtag('event', 'Successful_Login', {
+                        'event_category': 'Authentication',
+                        'event_label': 'Password Entry'
+                    });
                 } else {
                     document.getElementById('error-message').style.display = 'block';
                 }
