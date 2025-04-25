@@ -145,5 +145,29 @@
         <ul>
             <li><a href="./launcher.html#nesgh1">NES Greatest Hits 1</a></li>
         </ul>
-    </body>
-</html>
+
+
+<script>function protectPage() {
+    const correctPassword = "IWANTGAMES"; // Replace with your desired password
+    let password = prompt("Enter the password to access this page:");
+    
+    while (password !== correctPassword) {
+        alert("Incorrect password. Please try again.");
+        password = prompt("Enter the password to access this page:");
+        if (password === null) { // Handle cancel button
+            document.getElementById("content").innerHTML = "<h1>Access Denied</h1>";
+            return;
+        }
+    }
+    
+    // Show the content if password is correct
+    document.getElementById("content").style.display = "block";
+}
+
+// Hide content initially
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("content").style.display = "none";
+    protectPage();
+});</script>
+</Body>
+
