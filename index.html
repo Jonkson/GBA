@@ -5,13 +5,30 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
-            /* Hide content until correct password is entered */
             #content {
                 display: none;
+            }
+            #password-form {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                text-align: center;
+            }
+            #error-message {
+                color: red;
+                margin-top: 10px;
             }
         </style>
     </head>
     <body style="background:rgb(248, 237, 224);">
+        <div id="password-form">
+            <label for="password">Enter Secret Key:</label>
+            <input type="password" id="password" name="password">
+            <button id="submit-password">Submit</button>
+            <p id="error-message" style="display: none;">Incorrect password</p>
+        </div>
+        
         <div id="content">
             <h1>Welcome to the GBA Emulator, Brought To You By Jackson M.</h1>
             <h1>Please Keep This Website Lowkey Or Else Its Gonna Get Blocked :(</h1>
@@ -48,7 +65,7 @@
                 <li><a href="./launcher.html#ff1and2">Final Fantasy 1 & 2 Advance</a></li>
                 <li><a href="./launcher.html#ff4S">Final Fantasy IV Advance (Sound Restoration Mod)</a></li>
                 <li><a href="./launcher.html#ff6">Final Fantasy VI Advance</a></li>
-                <li><a href="./launcher.html#final那么1st.com/final_fantasy_tactics">Final Fantasy Tactics Advance</a></li>
+                <li><a href="./launcher.html#final_fantasy_tactics">Final Fantasy Tactics Advance</a></li>
                 <li><a href="./launcher.html#fire_emblem">Fire Emblem</a></li>
                 <li><a href="./launcher.html#frogger1">Frogger Advance - The Great Quest</a></li>
                 <li><a href="./launcher.html#frogger2">Frogger's Adventures - Temple of the Frog</a></li>
@@ -69,7 +86,7 @@
                 <li><a href="./launcher.html#mariokart">Mario Kart: Super Circuit</a></li>
                 <li><a href="./launcher.html#marioparty">Mario Party Advance</a></li>
                 <li><a href="./launcher.html#mariopinball">Mario Pinball Land</a></li>  
-                <li><a href="./launcher.html#mvsdk">Mario V.S. Donkey Kong</a></li>
+                <li><a href="./launcher.html#mvsdk">Mario V.S. Donkey Kong</a]+)/li>
                 <li><a href="./launcher.html#megamanbass">Megaman & Bass</a></li>
                 <li><a href="./launcher.html#megaman_battle1">Megaman Battle Network 1</a></li>
                 <li><a href="./launcher.html#megaman_battle2">Megaman Battle Network 2</a></li>
@@ -156,27 +173,20 @@
         </div>
 
         <script>
-            function protectPage() {
-                const correctPassword = "IWANTGAMES"; // Set password
-                let password = prompt("Enter the password to access this page:");
-                
-                while (password !== correctPassword) {
-                    alert("Incorrect password. Please try again.");
-                    password = prompt("Enter the password to access this page:");
-                    if (password === null) { // Handle cancel button
-                        document.getElementById("content").innerHTML = "<h1>Access Denied</h1>";
-                        return;
-                    }
+            document.getElementById('submit-password').addEventListener('click', function() {
+                var enteredPassword = document.getElementById('password').value;
+                if (enteredPassword === 'IWANTGAMES') {
+                    document.getElementById('password-form').style.display = 'none';
+                    document.getElementById('content').style.display = 'block';
+                } else {
+                    document.getElementById('error-message').style.display = 'block';
                 }
-                
-                // Show the content if password is correct
-                document.getElementById("content").style.display = "block";
-            }
+            });
 
-            // Hide content initially and run password check
-            document.addEventListener("DOMContentLoaded", () => {
-                document.getElementById("content").style.display = "none";
-                protectPage();
+            document.getElementById('password').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    document.getElementById('submit-password').click();
+                }
             });
         </script>
     </body>
